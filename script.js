@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// LOGIKA BACKSOUND SPA RELAKSASI NATURAL
+// LOGIKA BACKSOUND LANGSUNG NYALA OTOMATIS
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('spa-backsound');
@@ -217,18 +217,42 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (audio && musicToggle) {
         const icon = musicToggle.querySelector('i');
-        
-        // Mengatur volume awal agar tidak terlalu keras mengejutkan (skala 0.0 sampai 1.0)
-        audio.volume = 0.4; 
+        audio.volume = 0.4; // Mengatur volume agar tetap soft
 
-        musicToggle.addEventListener('click', () => {
-            if (audio.paused) {
+        // 1. Jalankan perintah putar langsung saat halaman terbuka
+        audio.play().then(() => {
+            console.log("Autoplay berhasil aktif.");
+        }).catch(err => {
+            console.log("Autoplay diblokir sistem browser, mengaktifkan trik instan...", err);
+            
+            // Trik Instan Cadangan: Jika browser memblokir putaran pertama karena aturan privasi,
+            // suara akan langsung menyala otomatis begitu user menyentuh, mengklik, atau scroll layar 1 piksel saja.
+            const forcePlay = () => {
                 audio.play().then(() => {
                     icon.className = 'fa-solid fa-volume-high';
                     musicToggle.classList.add('playing');
-                }).catch(err => {
-                    console.log("Pemutaran audio diblokir oleh interaksi browser:", err);
+                    cleanListeners();
                 });
+            };
+
+            const cleanListeners = () => {
+                document.removeEventListener('click', forcePlay);
+                document.removeEventListener('scroll', forcePlay);
+                document.removeEventListener('touchstart', forcePlay);
+            };
+
+            document.addEventListener('click', forcePlay);
+            document.addEventListener('scroll', forcePlay);
+            document.addEventListener('touchstart', forcePlay);
+        });
+
+        // 2. Tombol manual tetap berfungsi normal jika user ingin mematikan/menyalakan kembali
+        musicToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            if (audio.paused) {
+                audio.play();
+                icon.className = 'fa-solid fa-volume-high';
+                musicToggle.classList.add('playing');
             } else {
                 audio.pause();
                 icon.className = 'fa-solid fa-volume-xmark';

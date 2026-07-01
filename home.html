@@ -250,15 +250,13 @@
                 </div>
             </div>
 
-            <audio id="spa-backsound" loop>
-                <!-- Ganti src dengan file audio alam/spa lokal Anda atau link streaming audio yang valid -->
+            <audio id="spa-backsound" loop autoplay>
                 <source src="backsound.mp3" type="audio/mpeg">
-                <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" type="audio/wav"> <!-- Contoh sfx alam pendek -->
+                <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" type="audio/wav">
             </audio>
 
-            <!-- Floating Music Toggle -->
-            <button id="music-toggle" class="floating-music" aria-label="Nyalakan Musik Relaksasi">
-                <i class="fa-solid fa-volume-xmark"></i>
+            <button id="music-toggle" class="floating-music playing" aria-label="Matikan Musik Relaksasi">
+                <i class="fa-solid fa-volume-high"></i>
             </button>
 
             <div class="bottom-bar">
