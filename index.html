@@ -3,265 +3,269 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rumah Aslamy</title>
+    <title>Selamat Datang di Rumah Aslamy</title>
     <link rel="icon" type="image/jpeg" href="image.jpg" sizes="192x192">
     
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #0b2216 0%, #123524 50%, #1a432e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            position: relative;
+            /* Transisi transisi untuk body saat keluar */
+            transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease;
+        }
+
+        /* Overlay Tekstur Halus Alami */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Efek Kelas Transisi Keluar (Triggered by JS) */
+        body.page-exit {
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(0.93);
+        }
+
+        /* Frame Dekorasi Dedaunan Alami di 4 Sudut (Mengikuti Pola image_bb249c.jpg) */
+        .cover-leaf {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            opacity: 0.25;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 2;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+        
+        .leaf-top-left {
+            top: -30px;
+            left: -30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2377b255' d='M0,0 C30,10 70,40 60,80 C50,60 20,40 0,0 Z'/%3E%3Cpath fill='%234f772d' d='M0,0 C40,5 50,30 30,70 C35,45 15,25 0,0 Z'/%3E%3Cpath fill='%2390a955' d='M0,0 C15,25 40,50 70,50 C50,45 25,20 0,0 Z'/%3E%3C/svg%3E");
+        }
+        .leaf-top-right {
+            top: -30px;
+            right: -30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2377b255' d='M100,0 C70,10 30,40 40,80 C50,60 80,40 100,0 Z'/%3E%3Cpath fill='%234f772d' d='M100,0 C60,5 50,30 70,70 C65,45 85,25 100,0 Z'/%3E%3Cpath fill='%2390a955' d='M100,0 C85,25 60,50 30,50 C50,45 75,20 100,0 Z'/%3E%3C/svg%3E");
+        }
+        .leaf-bottom-left {
+            bottom: -30px;
+            left: -30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2377b255' d='M0,100 C30,90 70,60 60,20 C50,40 20,60 0,100 Z'/%3E%3Cpath fill='%234f772d' d='M0,100 C40,95 50,70 30,30 C35,55 15,75 0,100 Z'/%3E%3C/svg%3E");
+        }
+        .leaf-bottom-right {
+            bottom: -30px;
+            right: -30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2377b255' d='M100,100 C70,90 30,60 40,20 C50,40 80,60 100,100 Z'/%3E%3Cpath fill='%234f772d' d='M100,100 C60,95 50,70 70,30 C65,55 85,75 100,100 Z'/%3E%3C/svg%3E");
+        }
+
+        /* Saat transisi keluar, daun terlempar menjauh sedikit */
+        body.page-exit .leaf-top-left { transform: translate(-40px, -40px); opacity: 0; }
+        body.page-exit .leaf-top-right { transform: translate(40px, -40px); opacity: 0; }
+        body.page-exit .leaf-bottom-left { transform: translate(-40px, 40px); opacity: 0; }
+        body.page-exit .leaf-bottom-right { transform: translate(40px, 40px); opacity: 0; }
+
+        /* Konten Pembuka */
+        .cover-container {
+            max-width: 500px;
+            width: 100%;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInContainer 1.2s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+        }
+
+        /* Wadah Bulat Putih Premium untuk Logo Resmi Aslamy */
+        .cover-logo-wrapper {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), inset 0 0 0 3px #31572c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cover-logo {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Tipografi Judul */
+        .cover-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #ecf39e;
+            text-transform: uppercase;
+            margin: 0 0 5px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        .cover-tagline {
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #b7e4c7;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cover-label {
+            font-size: 1rem;
+            font-style: italic;
+            color: #d8f3dc;
+            margin-bottom: 10px;
+            opacity: 0.8;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .cover-headline {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #ffffff;
+            margin: 0 0 35px 0;
+            padding: 0 15px;
+        }
+
+        /* Tombol Lonjong Kapsul Putih Berkelas (Desain "Buka Undangan") */
+        .btn-enter-website {
+            background-color: #ffffff;
+            color: #132a13;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-enter-website:hover {
+            background-color: #ecf39e;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .btn-enter-website i {
+            color: #31572c;
+            font-size: 1.2rem;
+        }
+
+        .cover-note {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #95d5b2;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        /* Animasi Masuk Awal */
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsif Layaran HP */
+        @media (max-width: 480px) {
+            .cover-leaf { width: 180px; height: 180px; }
+            .cover-brand { font-size: 1.8rem; }
+            .cover-headline { font-size: 1.25rem; }
+            .btn-enter-website { padding: 14px 32px; font-size: 0.95rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ======== HERO ======== -->
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fa-solid fa-leaf"></i> Lepas Penat Dengan Nyaman
-                </div>
-                <h1>Badan Kaku & Pikiran Jenuh? <span>Refresh Total Sekarang</span></h1>
-                <p>Pijat relaksasi, bekam, dan akupunktur medis untuk menghilangkan pegal-pegal. Cocok untuk semua usia—dari mereka yang sibuk kerja hingga pensiunan yang ingin tetap sehat dan bugar.</p>
-
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <i class="fa-regular fa-face-smile"></i>
-                        <div class="stat-text"><strong>9 dari 10</strong> Klien Puas</div>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fa-regular fa-clock"></i>
-                        <div class="stat-text"><strong>30–60</strong> Menit Sesi</div>
-                    </div>
-                </div>
-
-                <div class="hero-actions">
-                    <a href="#booking" class="btn btn-primary"><i class="fa-regular fa-calendar-check"></i> Booking Sekarang</a>
-                    <a href="#terapi" class="btn btn-outline"><i class="fa-regular fa-eye"></i> Lihat Pilihan Terapi</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <!-- Corak Bulatan Mulus Animated -->
-                <div class="circle-decor circle-1"></div>
-                <div class="circle-decor circle-2"></div>
-                <div class="circle-decor circle-3"></div>
-                <div class="circle-decor circle-4"></div>
-                
-                <h3>Relax & Refresh</h3>
-            </div>
+    <!-- Bingkai Ornamen Daun Alami Sesuai Posisi image_bb249c.jpg -->
+    <div class="cover-leaf leaf-top-left"></div>
+    <div class="cover-leaf leaf-top-right"></div>
+    <div class="cover-leaf leaf-bottom-left"></div>
+    <div class="cover-leaf leaf-bottom-right"></div>
+    
+    <div class="cover-container">
+        <!-- Penggunaan Logo image_bb28fd.png -->
+        <div class="cover-logo-wrapper">
+            <img src="image.jpg" alt="Logo Resmi Rumah Aslamy" class="cover-logo">
         </div>
-    </section>
+        
+        <!-- Identitas Brand -->
+        <h1 class="cover-brand">Rumah Aslamy</h1>
+        <div class="cover-tagline">Pusat Terapi Kebugaran & Kesehatan</div>
+        
+        <!-- Konten Pengantar -->
+        <div class="cover-label">Selamat Datang</div>
+        <h2 class="cover-headline">Mulai Langkah Penyembuhan Alami & Segarkan Tubuh Anda Kembali</h2>
+        
+        <!-- Tombol Transisi Interaktif -->
+        <a href="home.html" id="btn-masuk-layanan" class="btn-enter-website">
+            <i class="fa-solid fa-leaf"></i> Buka Website & Layanan
+        </a>
+        
+        <p class="cover-note">🌿 Profesional · Higienis · Sesuai Sunnah</p>
+    </div>
 
-    <!-- ======== JADWAL BEKAM SUNNAH (RESMI PBI) ======== -->
-    <section class="section-padding section-light" id="jadwal-bekam">
-        <div class="container">
-            <div class="section-header">
-                <h2>Jadwal Bekam Sunnah Bulan Ini</h2>
-                <p>Panduan otomatis tanggal terbaik terapi bekam dan puasa Ayyamul Bidh berdasarkan standar acuan <strong>Perkumpulan Bekam Indonesia (PBI) Tahun 1448 H</strong>.</p>
-            </div>
-            
-            <div class="calendar-wrapper">
-                <!-- Box Kalender -->
-                <div class="calendar-card">
-                    <div class="calendar-header">
-                        <button id="prev-month" class="calendar-btn"><i class="fa-solid fa-chevron-left"></i></button>
-                        <h3 id="calendar-month-year">Januari 2026</h3>
-                        <button id="next-month" class="calendar-btn"><i class="fa-solid fa-chevron-right"></i></button>
-                    </div>
-                    <div class="calendar-weekdays">
-                        <div>Min</div><div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
-                    </div>
-                    <div class="calendar-days" id="calendar-days-grid"></div>
-                </div>
+    <!-- JavaScript Khusus Penahan & Pemicu Efek Halus -->
+    <script>
+        document.getElementById('btn-masuk-layanan').addEventListener('click', function(e) {
+            // 1. Tahan link asli agar tidak langsung pindah halaman kasar
+            e.preventDefault(); 
+            const linkTujuan = this.getAttribute('href');
 
-                <!-- Box Keterangan / Legenda -->
-                <div class="calendar-legend">
-                    <h4>Keterangan Tanggal Sunnah:</h4>
-                    <div class="legend-item">
-                        <span class="dot dot-puasa"></span>
-                        <div>
-                            <strong>Puasa Ayyamul Bidh</strong>
-                            <p>Pertengahan bulan (13, 14, 15 Hijriah). Ditandai dengan lingkaran kuning.</p>
-                        </div>
-                    </div>
-                    <div class="legend-item">
-                        <span class="dot dot-bekam"></span>
-                        <div>
-                            <strong>Bekam Sunnah PBI (Hijamah)</strong>
-                            <p>Waktu emas detoksifikasi darah (17, 19, 21 Hijriah). Ditandai dengan lingkaran merah.</p>
-                        </div>
-                    </div>
-                    <div class="legend-note">
-                        <p><i class="fa-solid fa-info-circle"></i> Angka kecil di dalam kotak menunjukkan penyesuaian penanggalan Hijriah PBI.</p>
-                        <p style="margin-top: 5px; font-size: 11px; color: var(--green-dark);"><i class="fa-solid fa-circle-check"></i> Disinkronkan dengan metode perkiraan astronomi & rukyatul hilal berkala.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            // 2. Suntik kelas animasi keluar ke body (efek mengecil + memudar + blur + daun menjauh)
+            document.body.classList.add('page-exit');
 
-    <!-- ======== MANFAAT ======== -->
-    <section class="section-padding section-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Apa yang Akan Anda Rasakan</h2>
-                <p>Manfaat langsung yang bisa Anda alami sejak sesi pertama selesai.</p>
-            </div>
-
-            <div class="manfaat-grid">
-                <div class="manfaat-card">
-                    <div class="manfaat-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-                    <h3>Tubuh Terasa Ringan</h3>
-                    <p>Sirkulasi darah lancar, badan jadi enteng dan energi kembali maksimal untuk aktivitas sehari-hari.</p>
-                </div>
-                <div class="manfaat-card">
-                    <div class="manfaat-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>Pegal Hilang</h3>
-                    <p>Ketegangan di leher, pundak, dan punggung berkurang signifikan. Lega dan nyaman kembali.</p>
-                </div>
-                <div class="manfaat-card">
-                    <div class="manfaat-icon"><i class="fa-solid fa-moon"></i></div>
-                    <h3>Tidur Lebih Nyenyak</h3>
-                    <p>Pikiran rileks, stres berkurang, dan tidur Anda jadi lebih dalam dan berkualitas.</p>
-                </div>
-                <div class="manfaat-card">
-                    <div class="manfaat-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
-                    <h3>Kesehatan Terjaga</h3>
-                    <p>Tubuh terbebas dari kelelahan berlebih, imunitas meningkat, dan daya tahan lebih baik.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======== TERAPI ANDALAN ======== -->
-    <section class="section-padding" id="terapi">
-        <div class="container">
-            <div class="section-header">
-                <h2>Pilihan Terapi Kami</h2>
-                <p>Pilih layanan yang paling cocok untuk kebutuhan kesehatan Anda</p>
-            </div>
-
-            <div class="terapi-tabs">
-                <button class="tab-btn active" onclick="switchTab('pijat', this)"><i class="fa-solid fa-spa"></i> Pijat Relaksasi</button>
-                <button class="tab-btn" onclick="switchTab('bekam', this)"><i class="fa-solid fa-fire"></i> Bekam</button>
-                <button class="tab-btn" onclick="switchTab('akupunktur', this)"><i class="fa-solid fa-droplet"></i> Akupunktur</button>
-            </div>
-
-            <div class="terapi-display">
-                <div class="terapi-info">
-                    <h3 id="tab-title">Pijat Relaksasi Tradisional</h3>
-                    <p id="tab-desc">Pijat lembut namun efektif yang menggabungkan teknik tradisional dan modern. Aman untuk semua usia, dari yang muda hingga lansia. Otot Anda akan terasa rileks dan nyaman setelah sesi selesai.</p>
-                    <ul class="terapi-list" id="tab-checklist"></ul>
-                    <a href="#booking" class="btn btn-primary" id="tab-btn-action">
-                        <i id="tab-btn-icon" class="fa-solid fa-hand-sparkles"></i>
-                        <span id="tab-btn-text">Pesan Sesi Pijat</span>
-                    </a>
-                </div>
-                <div class="terapi-visual-box" id="tab-visual-box">
-                    <!-- Corak Bulatan Mulus Animated -->
-                    <div class="circle-decor circle-1" style="width: 200px; height: 200px; top: -50px; right: -50px;"></div>
-                    <div class="circle-decor circle-2" style="width: 140px; height: 140px; bottom: -30px; left: -30px;"></div>
-                    <div class="circle-decor circle-4" style="width: 40px; height: 40px; top: 30px; left: 30px;"></div>
-                    
-                    <h4 id="tab-visual-text">Pijat Relaksasi</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======== KENAPA WAJIB ======== -->
-    <section class="section-padding section-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Kenapa Memilih Kami</h2>
-                <p>Tempat terapi yang nyaman, aman, dan profesional untuk Anda</p>
-            </div>
-            <div class="why-grid">
-                <div class="why-card">
-                    <i class="fa-regular fa-clock"></i>
-                    <h4>Jadwal Fleksibel</h4>
-                    <p>Sesi bisa disesuaikan dengan waktu luang Anda, baik pagi, siang, atau malam.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fa-solid fa-hand-holding-heart"></i>
-                    <h4>Profesional & Berpengalaman</h4>
-                    <p>Terapis terlatih yang memahami kebutuhan tubuh dan bisa memberikan layanan terbaik.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fa-solid fa-spa"></i>
-                    <h4>Bersih & Higienis</h4>
-                    <p>Ruangan yang steril, handuk bersih, dan alat yang terjamin kebersihannya untuk kenyamanan Anda.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fa-regular fa-handshake"></i>
-                    <h4>Layanan Home Visit</h4>
-                    <p>Terapis kami bisa datang ke rumah atau kantor Anda jika Anda lebih nyaman.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======== CTA BANNER ======== -->
-    <section class="cta-container-block" id="booking">
-        <div class="container">
-            <div class="cta-banner">
-                <h2>Sudah Siap Merawat Diri Anda?</h2>
-                <p>Hubungi kami hari ini melalui WhatsApp dan dapatkan konsultasi gratis.</p>
-                <a href="https://wa.me/6285780866700" class="btn btn-whatsapp" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i> Hubungi Kami di WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======== INFO ======== -->
-    <section class="info-section">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-card-header">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <h4>Alamat Klinik</h4>
-                    </div>
-                    <p>Jl. Gn. Sibayak Raya Blok D4 no.17 RT02 / RW.12, Mangunjaya, Kec. Tambun Sel., Kabupaten Bekasi, Jawa Barat</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-card-header">
-                        <i class="fa-regular fa-clock"></i>
-                        <h4>Jam Buka</h4>
-                    </div>
-                    <p><strong>Senin – Jumat:</strong> 09.00 – 20.00<br /><strong>Sabtu & Minggu:</strong> 08.00 – 21.00<br /><small style="font-style: italic;">Kunjungan malam bisa diatur dengan perjanjian</small></p>
-                </div>
-                <div class="info-card">
-                    <div class="info-card-header">
-                        <i class="fa-solid fa-phone"></i>
-                        <h4>Hubungi Kami</h4>
-                    </div>
-                    <div class="contact-list">
-                        <p class="contact-item"><i class="fa-solid fa-phone"></i> 0857-8086-6700</p>
-                        <p class="contact-item"><i class="fa-brands fa-whatsapp"></i> 0857-8086-6700</p>
-                    </div>
-                    <a href="https://wa.me/6285780866700" class="btn-chat-now" target="_blank">
-                        <i class="fa-regular fa-comment"></i> Tanya Jadwal
-                    </a>
-                </div>
-            </div>
-
-            <div class="bottom-bar">
-                <p>&copy; 2026 Rumah Aslamy · Tubuh Sehat, Hidup Bahagia 🌿</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Floating WA -->
-    <a href="https://wa.me/6285780866700" class="floating-wa" target="_blank" aria-label="Chat WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+            // 3. Biarkan animasi berjalan selama 600ms, lalu pindah halaman secara mulus
+            setTimeout(function() {
+                window.location.href = linkTujuan;
+            }, 600); 
+        });
+    </script>
 </body>
 </html>

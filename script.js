@@ -207,3 +207,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ==========================================
+// LOGIKA BACKSOUND SPA RELAKSASI NATURAL
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('spa-backsound');
+    const musicToggle = document.getElementById('music-toggle');
+    
+    if (audio && musicToggle) {
+        const icon = musicToggle.querySelector('i');
+        
+        // Mengatur volume awal agar tidak terlalu keras mengejutkan (skala 0.0 sampai 1.0)
+        audio.volume = 0.4; 
+
+        musicToggle.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    icon.className = 'fa-solid fa-volume-high';
+                    musicToggle.classList.add('playing');
+                }).catch(err => {
+                    console.log("Pemutaran audio diblokir oleh interaksi browser:", err);
+                });
+            } else {
+                audio.pause();
+                icon.className = 'fa-solid fa-volume-xmark';
+                musicToggle.classList.remove('playing');
+            }
+        });
+    }
+});
