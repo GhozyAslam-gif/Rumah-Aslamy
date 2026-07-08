@@ -39,7 +39,35 @@ const therapyData = {
         btnIcon: "fa-solid fa-droplet",
         btnText: "Pesan Akupunktur Sekarang",
         visualText: "Acupuncture",
-        visualBg: "#1e4a35",
+        visualBg: "#286849ff",
+        visualTextColor: "#ffffff"
+    },
+    stroke: {
+        title: "Terapi Pasca Stroke",
+        desc: "Perawatan komprehensif untuk membantu pemulihan mobilitas dan fungsi saraf setelah stroke. Terapis kami menggunakan metode yang aman dan teruji untuk membantu Anda kembali beraktivitas.",
+        checklist: [
+            "Memperbaiki fungsi motorik",
+            "Meningkatkan kekuatan otot",
+            "Mencegah kekakuan sendi"
+        ],
+        btnIcon: "fa-solid fa-wheelchair",
+        btnText: "Pesan Terapi Pasca Stroke",
+        visualText: "Pasca Stroke",
+        visualBg: "#29502dff",
+        visualTextColor: "#ffffff"
+    },
+    syaraf: {
+        title: "Terapi Syaraf Kejepit",
+        desc: "Penanganan khusus untuk meredakan nyeri dan ketegangan akibat syaraf kejepit di area tulang belakang atau area lainnya, membantu memulihkan rentang gerak Anda dengan nyaman.",
+        checklist: [
+            "Meredakan nyeri punggung",
+            "Mengurangi rasa kesemutan",
+            "Memperbaiki mobilitas"
+        ],
+        btnIcon: "fa-solid fa-bone",
+        btnText: "Pesan Terapi Syaraf Kejepit",
+        visualText: "Syaraf Kejepit",
+        visualBg: "#21471dff",
         visualTextColor: "#ffffff"
     }
 };
