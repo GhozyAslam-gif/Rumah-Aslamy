@@ -1,16 +1,16 @@
 // DATA TERAPI & LAYANAN
 const therapyData = {
     pijat: {
-        title: "Pijat Relaksasi Tradisional",
-        desc: "Pijat lembut namun efektif yang menggabungkan teknik tradisional dan modern. Aman untuk semua usia, dari yang muda hingga lansia. Otot Anda akan terasa rileks dan nyaman setelah sesi selesai.",
+        title: "Totok Punggung Mix",
+        desc: "Terapi penekanan pada titik-titik saraf di sepanjang punggung yang dikombinasikan dengan teknik relaksasi untuk melancarkan sirkulasi darah, menguraikan sumbatan, dan meredakan ketegangan otot.",
         checklist: [
-            "Otot leher dan pundak jadi rileks",
-            "Mengurangi stres dan kecemasan",
-            "Badan terasa lentur dan segar"
+            "Melancarkan alur sumbatan pembuluh darah",
+            "Meredakan pegal & ketegangan punggung dan leher",
+            "Meningkatkan daya tahan tubuh dan kebugaran"
         ],
         btnIcon: "fa-solid fa-hand-sparkles",
-        btnText: "Pesan Pijat Sekarang",
-        visualText: "Pijat Relaksasi",
+        btnText: "Pesan Totok Punggung Sekarang",
+        visualText: "Totok Punggung Mix",
         visualBg: "#4a9d6f",
         visualTextColor: "#ffffff"
     },
@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 let currentCalendarDate = new Date();
 
-// Data jangkar penanggalan awal bulan Hijriah 1448 H hasil kalibrasi mundur dari acuan tanggal 17 PBI
 const pbiMonths1448 = [
     { name: "Muharram", start: new Date(2026, 5, 16) },      // 1 Muharram = 16 Juni 2026
     { name: "Safar", start: new Date(2026, 6, 16) },         // 1 Safar = 16 Juli 2026
@@ -133,11 +132,9 @@ const pbiMonths1448 = [
     { name: "Dhu al-Hijjah", start: new Date(2027, 4, 7) }    // 1 Dhu al-Hijjah = 7 Mei 2027
 ];
 
-// Fungsi untuk menghitung konversi tanggal masehi ke Hijriah versi PBI
 function getPBIHijriDate(targetDate) {
     let activeMonthIdx = -1;
     
-    // Cari rentang bulan Hijriah yang cocok
     for (let i = pbiMonths1448.length - 1; i >= 0; i--) {
         if (targetDate >= pbiMonths1448[i].start) {
             activeMonthIdx = i;
@@ -147,7 +144,6 @@ function getPBIHijriDate(targetDate) {
     
     if (activeMonthIdx === -1) return null;
     
-    // Hitung selisih hari dari tanggal 1 bulan berjalan
     const diffTime = targetDate - pbiMonths1448[activeMonthIdx].start;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
     
@@ -175,14 +171,12 @@ function renderSunnahCalendar() {
     if (!gridContainer) return;
     gridContainer.innerHTML = "";
 
-    // Membuat slot kosong untuk hari sebelum tanggal 1 awal bulan masehi
     for (let i = 0; i < firstDayIndex; i++) {
         const emptyBox = document.createElement("div");
         emptyBox.classList.add("calendar-day-box", "empty");
         gridContainer.appendChild(emptyBox);
     }
 
-    // Melakukan render hari dari tanggal 1 sampai akhir bulan masehi
     for (let day = 1; day <= lastDay; day++) {
         const dayBox = document.createElement("div");
         dayBox.classList.add("calendar-day-box");
@@ -190,17 +184,12 @@ function renderSunnahCalendar() {
         const targetDate = new Date(year, month, day);
         const hijriData = getPBIHijriDate(targetDate);
 
-        // Struktur HTML dasar
         dayBox.innerHTML = `<span class="gregorian-num">${day}</span>`;
         
-        // Proteksi rentang siklus umur bulan hijriah (maksimal 30 hari)
         if (hijriData && hijriData.day <= 30) {
             const hijriDay = hijriData.day;
             dayBox.innerHTML += `<span class="hijri-num">${hijriDay}</span>`;
             
-            // Rules Pewarnaan Sinkron dengan Dokumen PBI:
-            // 1. Puasa Ayyamul Bidh = 13, 14, 15 Hijriah
-            // 2. Bekam Sunnah PBI = 17, 19, 21 Hijriah
             if (hijriDay === 13 || hijriDay === 14 || hijriDay === 15) {
                 dayBox.classList.add("status-puasa");
             } else if (hijriDay === 17 || hijriDay === 19 || hijriDay === 21) {
@@ -212,15 +201,12 @@ function renderSunnahCalendar() {
     }
 }
 
-// Integrasikan inisialisasi ke dalam DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Jalankan tab default bawaan
     const activeTab = document.querySelector('.tab-btn.active');
     if (activeTab) {
         switchTab('pijat', activeTab);
     }
 
-    // Setup Navigasi Tombol Kalender PBI
     if (document.getElementById("calendar-days-grid")) {
         renderSunnahCalendar();
 
@@ -245,16 +231,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (audio && musicToggle) {
         const icon = musicToggle.querySelector('i');
-        audio.volume = 0.4; // Mengatur volume agar tetap soft
+        audio.volume = 0.4;
 
-        // 1. Jalankan perintah putar langsung saat halaman terbuka
         audio.play().then(() => {
             console.log("Autoplay berhasil aktif.");
         }).catch(err => {
             console.log("Autoplay diblokir sistem browser, mengaktifkan trik instan...", err);
             
-            // Trik Instan Cadangan: Jika browser memblokir putaran pertama karena aturan privasi,
-            // suara akan langsung menyala otomatis begitu user menyentuh, mengklik, atau scroll layar 1 piksel saja.
             const forcePlay = () => {
                 audio.play().then(() => {
                     icon.className = 'fa-solid fa-volume-high';
@@ -274,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.addEventListener('touchstart', forcePlay);
         });
 
-        // 2. Tombol manual tetap berfungsi normal jika user ingin mematikan/menyalakan kembali
         musicToggle.addEventListener('click', (event) => {
             event.stopPropagation(); 
             if (audio.paused) {
