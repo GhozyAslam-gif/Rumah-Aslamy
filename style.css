@@ -653,8 +653,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--green-bg-card);
     text-align: center;
-    padding: 28px 0 12px;
+    padding: 20px;
     border-top: 1px solid rgba(74, 157, 111, 0.10);
     font-size: 14px;
     color: var(--text-muted);
