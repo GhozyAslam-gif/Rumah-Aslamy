@@ -221,7 +221,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-visual {
-    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-primary) 100%);
+    /* MENGGUNAKAN GAMBAR BEKAM DENGAN OVERLAY GRADASI SEPERTI PREVIEW */
+    background: linear-gradient(135deg, rgba(30, 74, 53, 0.6) 0%, rgba(74, 157, 111, 0.4) 100%), 
+                url('image.png') no-repeat center/cover;
     border-radius: var(--radius-lg);
     height: 360px;
     display: flex;
@@ -232,6 +234,22 @@ h1, h2, h3, h4, h5, h6 {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+}
+
+.hero-visual:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+}
+
+.hero-visual h3 {
+    font-size: 36px;
+    color: var(--text-light);
+    font-weight: 800;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    /* TAMBAHAN: Efek bayangan halus agar teks lebih pop-out di atas gambar */
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
 }
 
 /* Decorative Circles */
