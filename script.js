@@ -10,6 +10,8 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-hand-sparkles",
         btnText: "Pesan Totok Punggung Sekarang",
+        // URL gambar telah dirapikan (menghapus titik di akhir URL)
+        visualImg: "https://i.pinimg.com/736x/8a/da/7c/8ada7c282e9ccd306bf57d9706fdc381.jpg",
         visualText: "Totok Punggung Mix",
         visualBg: "#4a9d6f",
         visualTextColor: "#ffffff"
@@ -24,6 +26,7 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-fire",
         btnText: "Pesan Bekam Sekarang",
+        visualImg: "", // Tambahkan URL gambar di sini jika ada
         visualText: "Bekam Therapy",
         visualBg: "#2d6f52",
         visualTextColor: "#ffffff"
@@ -38,6 +41,7 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-droplet",
         btnText: "Pesan Akupunktur Sekarang",
+        visualImg: "", // Tambahkan URL gambar di sini jika ada
         visualText: "Acupuncture",
         visualBg: "#286849ff",
         visualTextColor: "#ffffff"
@@ -52,6 +56,7 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-wheelchair",
         btnText: "Pesan Terapi Pasca Stroke",
+        visualImg: "", // Tambahkan URL gambar di sini jika ada
         visualText: "Pasca Stroke",
         visualBg: "#29502dff",
         visualTextColor: "#ffffff"
@@ -66,6 +71,7 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-bone",
         btnText: "Pesan Terapi Syaraf Kejepit",
+        visualImg: "", // Tambahkan URL gambar di sini jika ada
         visualText: "Syaraf Kejepit",
         visualBg: "#21471dff",
         visualTextColor: "#ffffff"
@@ -97,14 +103,26 @@ function switchTab(tabKey, element) {
     document.getElementById('tab-btn-icon').className = data.btnIcon;
 
     const visualBox = document.getElementById('tab-visual-box');
-    visualBox.style.backgroundColor = data.visualBg;
+
+    // === PENYESUAIAN BACKGROUND GAMBAR / WARNA ===
+    if (data.visualImg && data.visualImg.trim() !== "") {
+        // Menggunakan gambar + overlay hitam transparan agar teks tetap kontras
+        visualBox.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('${data.visualImg}')`;
+        visualBox.style.backgroundSize = 'cover';
+        visualBox.style.backgroundPosition = 'center';
+        visualBox.style.backgroundRepeat = 'no-repeat';
+    } else {
+        // Jika tidak ada gambar, gunakan warna latar bawaan
+        visualBox.style.backgroundImage = 'none';
+        visualBox.style.backgroundColor = data.visualBg;
+    }
 
     const visualText = document.getElementById('tab-visual-text');
     visualText.textContent = data.visualText;
     visualText.style.color = data.visualTextColor;
 }
 
-// INSTASIASI KETIKA DOM SELESAI DILOAD
+// INSTANSIASI KETIKA DOM SELESAI DILOAD
 document.addEventListener('DOMContentLoaded', () => {
     const activeTab = document.querySelector('.tab-btn.active');
     if (activeTab) {
@@ -202,11 +220,6 @@ function renderSunnahCalendar() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const activeTab = document.querySelector('.tab-btn.active');
-    if (activeTab) {
-        switchTab('pijat', activeTab);
-    }
-
     if (document.getElementById("calendar-days-grid")) {
         renderSunnahCalendar();
 
