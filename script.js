@@ -26,7 +26,7 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-fire",
         btnText: "Pesan Bekam Sekarang",
-        visualImg: "", // Tambahkan URL gambar di sini jika ada
+        visualImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4yArdpKCucWEyTmdXI2ci7t46TUMUsroTgE7NQMGY_w&s=10", // Tambahkan URL gambar di sini jika ada
         visualText: "Bekam Therapy",
         visualBg: "#2d6f52",
         visualTextColor: "#ffffff"
@@ -41,7 +41,7 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-droplet",
         btnText: "Pesan Akupunktur Sekarang",
-        visualImg: "", // Tambahkan URL gambar di sini jika ada
+        visualImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqlS6TBgCMaBTxJbG0iJdXubRCxUYRq1ICF0ip--OQRg&s=10", // Tambahkan URL gambar di sini jika ada
         visualText: "Acupuncture",
         visualBg: "#286849ff",
         visualTextColor: "#ffffff"
@@ -71,7 +71,7 @@ const therapyData = {
         ],
         btnIcon: "fa-solid fa-bone",
         btnText: "Pesan Terapi Syaraf Kejepit",
-        visualImg: "", // Tambahkan URL gambar di sini jika ada
+        visualImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj78Md-uHHwOcs-VXw7ncb3YUviIR75rLrXtPPfFnsRQ&s=10", // Tambahkan URL gambar di sini jika ada
         visualText: "Syaraf Kejepit",
         visualBg: "#21471dff",
         visualTextColor: "#ffffff"

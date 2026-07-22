@@ -221,8 +221,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-visual {
-    background: linear-gradient(135deg, rgba(30, 74, 53, 0.6) 0%, rgba(74, 157, 111, 0.4) 100%), 
-                url('image.png') no-repeat center/cover;
+   background: linear-gradient(135deg, rgba(30, 74, 53, 0.8) 0%, rgba(74, 157, 111, 0.8) 100%), 
+            url('image.png') no-repeat center/cover;
+    background-blend-mode:overlay;
     border-radius: var(--radius-lg);
     height: 360px;
     display: flex;
